@@ -18,7 +18,8 @@ $(document).ready(function () {
 
 			var initialDate,
 				minDate, 
-				finalDate;
+				finalDate,
+				diff;
 
 			initialDate = start;
 			minDate = initialDate.replace(',', '/');
@@ -60,12 +61,33 @@ $(document).ready(function () {
             return resultDate;
         }
 
+        monthDiff = function (init, limit) {
+
+            init = new Date(init);
+            limit = new Date(limit);
+
+            var numberOfMonths;
+
+            var date1 = new Date(init);
+            var date2 = new Date(limit);
+
+            var year1 = date1.getFullYear();
+            var year2 = date2.getFullYear();
+
+            var month1 = date1.getMonth();
+            var month2 = date2.getMonth();
+
+   
+            numberOfMonths = (year2 - year1) * 12 + (month2 - month1) + 1;
+            return numberOfMonths;
+        }
+
 		return {
 			renderCalendar: renderCalendar
 		};
 
 	})();
-	
+
 	$('.render').click(function (e) {
 
 		start = $('#datepicker').val();
