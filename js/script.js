@@ -21,12 +21,17 @@ $(document).ready(function () {
 			var initialDate,
 			minDate, 
 			finalDate,
-			diff;
+			diff,
+			holidays;
 
+			var year = new Date(minDate).getFullYear();
+			diff = monthDiff(minDate, finalDate);
 
 			initialDate = start;
 			minDate = initialDate.replace(',', '/');
 			finalDate = limitDate(start, days);
+
+			var year = new Date(minDate).getFullYear();
 			diff = monthDiff(minDate, finalDate);
 
 			$('.result').datepicker("setDate", new Date(initialDate));
@@ -40,7 +45,10 @@ $(document).ready(function () {
 				
 			});
 
-		};
+			holidays = getHolidays(code, year);
+
+
+		}
 
 		var limitDate = function (initial, limit) {
 
@@ -92,6 +100,7 @@ $(document).ready(function () {
         var resetCalendar = function () {
         	$('.result').empty();
         	$('.result').removeClass('hasDatepicker');
+        	$('.holidays').empty();
         }
 
         var getHolidays = function (country, year){
@@ -99,13 +108,24 @@ $(document).ready(function () {
 
         	if (year === 2008) {
         		$.getJSON(holidays, function (data, status) {
+
+        		})
+        		.success(function (data) {
+        			console.log(data);
         			$.each(data.holidays, function (key, val) {
         				$('.holidays').append("<p>" + val[0]['date'] + "-" + val[0]['name'] + "</p>");
         			})
-        		}
+        		})
+        		.error(function (XMLHttpRequest, textStatus, errorThrown) { 
+        			console.log(textStatus);
+        			$('.holidays').append("<p>Error on retrieving holidays information, make sure you are selecting year 2008 or a correct country code. Otherwise, it could be a service error<p>");
+
+        		})
+    
+        	}else{
+        		$('.holidays').append("<p>Holidays are only available for year 2008<p>");
         	}
         }
-        
 
         return {
         	renderCalendar: renderCalendar,
