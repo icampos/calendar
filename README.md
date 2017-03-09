@@ -1,2 +1,2 @@
 # calendar
-Calendar exercise
+Calendar exercise for Prosoft
