@@ -1,0 +1,27 @@
+.result .ui-datepicker-calendar .ui-datepicker-week-end  a{
+    background: yellow;
+}
+
+.result .ui-datepicker-calendar .ui-state-default{
+    background: lightgreen;
+}
+
+.result .ui-datepicker-calendar .ui-datepicker-unselectable{
+ background: gray;
+ opacity: 1;
+}
+
+.result .ui-datepicker-calendar .ui-datepicker-unselectable span{
+    background: gray;
+    color: gray;
+}
+
+.result .ui-datepicker-calendar .ui-state-default a{
+    color: white;
+}
+
+.error{
+    display: none;
+    color: red;
+}
+
