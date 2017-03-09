@@ -17,14 +17,18 @@ $(document).ready(function () {
 		var renderCalendar = function (start, days, code) {
 
 			var initialDate,
-				minDate, 
-				finalDate,
-				diff;
+			minDate, 
+			finalDate,
+			diff;
+
 
 			initialDate = start;
 			minDate = initialDate.replace(',', '/');
 			finalDate = limitDate(start, days);
-		
+			diff = monthDiff(minDate, finalDate);
+
+			console.log(diff);
+
 
 			$('.result').datepicker("setDate", new Date(initialDate));
 			$(".result").datepicker({
@@ -32,7 +36,8 @@ $(document).ready(function () {
 				changeMonth: false,
 				dateFormat: 'm/d/yy',
 				minDate: minDate,
-                maxDate: finalDate,
+				maxDate: finalDate,
+				numberOfMonths: diff
 				
 			});
 
@@ -42,10 +47,10 @@ $(document).ready(function () {
 
 		var limitDate = function (initial, limit) {
 
-            var initial,
-                newInitial,
-                limit,
-                resultDate;
+			var initial,
+			newInitial,
+			limit,
+			resultDate;
 
             //Format initial date
             initial = new Date(initial);
@@ -63,43 +68,50 @@ $(document).ready(function () {
 
         monthDiff = function (init, limit) {
 
-            init = new Date(init);
-            limit = new Date(limit);
+        	init = new Date(init);
+        	limit = new Date(limit);
 
-            var numberOfMonths;
+        	var numberOfMonths;
 
-            var date1 = new Date(init);
-            var date2 = new Date(limit);
+        	var date1 = new Date(init);
+        	var date2 = new Date(limit);
 
-            var year1 = date1.getFullYear();
-            var year2 = date2.getFullYear();
+        	var year1 = date1.getFullYear();
+        	var year2 = date2.getFullYear();
 
-            var month1 = date1.getMonth();
-            var month2 = date2.getMonth();
+        	var month1 = date1.getMonth();
+        	var month2 = date2.getMonth();
 
-   
-            numberOfMonths = (year2 - year1) * 12 + (month2 - month1) + 1;
-            return numberOfMonths;
+        	if (month1 === 0) {
+        		month1++;
+        		month2++;
+        	}
+
+        	console.log(month);
+
+        	numberOfMonths = (year2 - year1) * 12 + (month2 - month1) + 1;
+
+        	return numberOfMonths;
         }
 
-		return {
-			renderCalendar: renderCalendar
-		};
+        return {
+        	renderCalendar: renderCalendar
+        };
 
-	})();
+    })();
 
-	$('.render').click(function (e) {
+    $('.render').click(function (e) {
 
-		start = $('#datepicker').val();
-		limit = parseInt($('#days').val());
-		code = $('#country').val();
+    	start = $('#datepicker').val();
+    	limit = parseInt($('#days').val());
+    	code = $('#country').val();
 
-		console.log(start+" "+limit);
+    	console.log(start+" "+limit);
 
-		Calendar.renderCalendar(start, limit, code);
-		
+    	Calendar.renderCalendar(start, limit, code);
 
-		e.preventDefault();
 
-	});
+    	e.preventDefault();
+
+    });
 });
