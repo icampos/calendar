@@ -12,27 +12,31 @@
 	crossorigin="anonymous">
 </head>
 <body>
-
-	<h1>Prosoft Programming Exercise</h1>
-	<p>Please select a starting date and specify number of days.</p>
-     <p class="error">Start Date and Number of Days are required fields</p>
-	<form>
-		<p>
-			<label for="datepicker">Start Date</label>
-			<input type="text" name="datepicker" id="datepicker">
-		</p>
-		<p>
-			<label for="days">Number of days</label>
-			<input type="number" name="days" id="days" class="form-control">
-		</p>
-		<p>
-			<label for="country">Country Code</label>
-			<input type="text" class="form-control">
-		</p>
-		<input class="render btn btn-primary" type="submit" value="Submit">
-	</form>
-
-	<div class="result">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12 col-md-6">
+				<h1>Prosoft Programming Exercise</h1>
+				<p>Please select a starting date and specify number of days.</p>
+				<p class="error">Start Date and Number of Days are required fields</p>
+				<form>
+					<p>
+						<label for="datepicker">Start Date</label>
+						<input type="text" name="datepicker" id="datepicker" class="form-control">
+					</p>
+					<p>
+						<label for="days">Number of days</label>
+						<input type="number" name="days" id="days" class="form-control">
+					</p>
+					<p>
+						<label for="country">Country Code</label>
+						<input type="text" id="country" class="form-control">
+					</p>
+					<input class="render btn btn-primary" type="submit" value="Submit">
+				</form>
+				<div class="result">
+				</div>
+			</div>
+		</div>
 	</div>
 
 </body>
