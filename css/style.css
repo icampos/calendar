@@ -25,3 +25,30 @@
     color: red;
 }
 
+.ui-datepicker{
+    max-width: 100%;
+    border: none;
+}
+
+.ui-datepicker-inline, .ui-datepicker-group{
+    width: 100%;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.ui-datepicker-multi-2 .ui-datepicker-group{
+    width: 100%;
+}
+
+.result{
+    margin-top: 20px;
+}
+
+.ui-widget.ui-widget-content{
+    border: none;
+}
+
+#country{
+    text-transform: uppercase;
+}

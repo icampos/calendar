@@ -94,6 +94,19 @@ $(document).ready(function () {
         	$('.result').removeClass('hasDatepicker');
         }
 
+        var getHolidays = function (country, year){
+        	var holidays = 'https://holidayapi.com/v1/holidays?country=' + country + '&year=' + year + '&key=c2b9ef93-6988-4efc-9f29-334ef7b42af1&public=true&pretty=true';
+
+        	if (year === 2008) {
+        		$.getJSON(holidays, function (data, status) {
+        			$.each(data.holidays, function (key, val) {
+        				$('.holidays').append("<p>" + val[0]['date'] + "-" + val[0]['name'] + "</p>");
+        			})
+        		}
+        	}
+        }
+        
+
         return {
         	renderCalendar: renderCalendar,
         	resetCalendar: resetCalendar
