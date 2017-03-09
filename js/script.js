@@ -16,6 +16,8 @@ $(document).ready(function () {
 
 		var renderCalendar = function (start, days, code) {
 
+			resetCalendar();
+
 			var initialDate,
 			minDate, 
 			finalDate,
@@ -27,9 +29,6 @@ $(document).ready(function () {
 			finalDate = limitDate(start, days);
 			diff = monthDiff(minDate, finalDate);
 
-			console.log(diff);
-
-
 			$('.result').datepicker("setDate", new Date(initialDate));
 			$(".result").datepicker({
 				changeYear: false,
@@ -40,8 +39,6 @@ $(document).ready(function () {
 				numberOfMonths: diff
 				
 			});
-
-			$('.result').datepicker("setDate", new Date());
 
 		};
 
@@ -87,15 +84,19 @@ $(document).ready(function () {
         		month2++;
         	}
 
-        	console.log(month);
-
         	numberOfMonths = (year2 - year1) * 12 + (month2 - month1) + 1;
 
         	return numberOfMonths;
         }
 
+        var resetCalendar = function () {
+        	$('.result').empty();
+        	$('.result').removeClass('hasDatepicker');
+        }
+
         return {
-        	renderCalendar: renderCalendar
+        	renderCalendar: renderCalendar,
+        	resetCalendar: resetCalendar
         };
 
     })();
@@ -106,10 +107,13 @@ $(document).ready(function () {
     	limit = parseInt($('#days').val());
     	code = $('#country').val();
 
-    	console.log(start+" "+limit);
-
-    	Calendar.renderCalendar(start, limit, code);
-
+    	if (!$('#datepicker').val() || !$('#days').val()) {
+    		$('.error').css('display', 'block');
+    		Calendar.resetCalendar();
+    	} else {
+    		$('.error').css('display', 'none');
+    		Calendar.renderCalendar(start, limit, code);
+    	}
 
     	e.preventDefault();
 
