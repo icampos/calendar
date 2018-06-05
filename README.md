@@ -1,2 +1,2 @@
 # calendar
-Calendar exercise for Prosoft
+Calendar exercise using jQuery
